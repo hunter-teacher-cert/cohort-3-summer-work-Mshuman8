@@ -243,9 +243,19 @@ public class ArrayPractice {
      If the input array contains 5,8,13,7,27,2
      After the routine, the array will contain 2,27,7,13,8,5
   */
+
+  //5,8,13,7,27,2
   public static void flip( int[] data )
   {
-    int[] newArray = new int[data.length]
+    int[] newArray = new int[data.length];
+    for (var i=data.length-1; i>=0; i--) {
+      newArray[(data.length-1)-i] = data[i];
+    }
+
+    for (var i=0; i<data.length; i++) {
+      data[i] = newArray[i];
+    }
+      
   }
 
 
@@ -284,11 +294,15 @@ public class ArrayPractice {
     // System.out.println(maxTest);
 
     //challenge7
-    int[] data7 = {1,2,3,4,5,6,7,8,9};
-    int oddTest = countOdds(data7);
-    System.out.println(oddTest);
+    // int[] data7 = {1,2,3,4,5,6,7,8,9};
+    // int oddTest = countOdds(data7);
+    // System.out.println(oddTest);
       
 
+    //challenge8
+    int[] data8 = {1,2,3,4,5,6,7,8,9};
+    flip(data8);
+    printArray(data8);
 
     // add calls to show that the methods you write work.
   }
