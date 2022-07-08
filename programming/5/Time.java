@@ -113,22 +113,20 @@ public class Time {
       this.minutes += other.minutes;
       this.hours += other.hours;
 
-      if (this.seconds >= 60) {
+      if (this.seconds >= 60) { //deals with remaining seconds
         this.minutes += 1;
         this.seconds = this.seconds%60;
       }
 
-      if (this.minutes >= 60) {
+      if (this.minutes >= 60) { //deals with remaining minutes
         this.hours += 1;
         this.minutes = this.minutes%60;
       }
 
-      if (this.hours > 12) {
-        this.hours = this.hours % 12;
+      if (this.hours > 24) { //deals with remaining hours
+        this.hours = this.hours % 24;
       }
-      
-
-      
+    
 
     }
 
@@ -142,9 +140,16 @@ public class Time {
        false otherwise.
     */
     public boolean equals(Time other){
-	// your code here)
 
-	return false; // change this
+      if (this.seconds == other.seconds && this.minutes == other.minutes && this.hours == other.hours) {
+        return true; // change this
+      }
+
+      else {
+        return false;
+      }
+
+	    
     }
 
     /**
@@ -164,7 +169,49 @@ public class Time {
     public int compareTo(Time other){
 	// your code here)
 
-	return 0; // change this
+      //9:32:15 and //13:10:09
+      
+      // compare the hours and determine which is greater
+
+      // if the hours are the same, compare the minutes and determine which is greater
+
+      // if the minutes are the same, compare the seconds and determine which is greater
+
+      // if the seconds are the same, return 0
+
+      
+
+      if (this.hours > other.hours) {
+        return 1;
+      }
+      else if (this.hours < other.hours) {
+        return -1;
+      }
+      else { //if the hours were equal
+        
+        if (this.minutes > other.minutes) {
+          return 1;
+        } 
+        else if (this.minutes < other.minutes) {
+          return -1;
+        }
+        else { // if the hours and the minutes were equal
+
+          if (this.seconds > other.seconds) {
+            return 1;
+          }
+          else if (this.seconds < other.seconds) {
+            return -1;
+          }
+          else { // if the hours, the minutes and the seconds are all equal
+            return 0;
+          }
+          
+        }
+        
+      }
+
+      
     }
     
 

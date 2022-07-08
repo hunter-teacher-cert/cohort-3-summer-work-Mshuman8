@@ -1,2 +1,2 @@
 language = "bash"
-run = ""
+run = "cd programming/6/rat; javac Driver.java Rational.java; java Driver"
