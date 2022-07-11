@@ -52,7 +52,7 @@ public class SuperArray
   {
     //init underlying/inner storage of capacity 10
         this.numberElements = 0;
-        this.data = new int[10]
+        this.data = new int[10];
     //init instance vars
         /* YOUR SIMPLE+SMART CODE HERE */
   }
@@ -70,7 +70,14 @@ public class SuperArray
        then only write this section once the rest is tested and working.
     */
     /* YOUR SIMPLE+SMART CODE HERE */
+    int[] tempArray = new int[data.length+1];
 
+    if (this.data.length <= numberElements) {
+      for (int i=0; i<data.length; i++) {
+        tempArray[i] = this.data[i];
+      }
+      this.data = tempArray;
+    }
     // add item
     /* YOUR SIMPLE+SMART CODE HERE */
     this.data[this.numberElements] = value;
@@ -82,61 +89,93 @@ public class SuperArray
   }//end add()
 
 
-  // public boolean isEmpty()
-  // {
-  //   //return whether this SuperArray instance is empty
-  //   /* YOUR SIMPLE+SMART CODE HERE */
-  //   // for (int i=0; i<this.data.length; i++) {
-      
-  //   // }
+  public boolean isEmpty()
+  {
+
+    if (this.numberElements == 0) {
+      return true;
+    }
+    else {
+      return false;
+    }
     
-  // }
+    //return whether this SuperArray instance is empty
+    /* YOUR SIMPLE+SMART CODE HERE */
+    
+  }
 
 
-  // public int get(int index)
-  // {
-  //   //return item at index
-  //   /* YOUR SIMPLE+SMART CODE HERE */
-  // }
+  public int get(int index)
+  {
+    //return item at index
+    /* YOUR SIMPLE+SMART CODE HERE */
+    return this.data[index];
+      
+  }
 
 
-  // public String toString()
-  // {
-  //   //return stringified version of this Object
-  //   /* YOUR SIMPLE+SMART CODE HERE */
-  // }//end toString()
+  public String toString() {
+    String output = "";
+    for (int i=0; i<this.data.length; i++) {
+      if (data[i] == 0) {
+        output += "- ";
+      }
+      else {
+        output += this.data[i] + " ";
+      }
+    }
+    return output;
+    /* YOUR SIMPLE+SMART CODE HERE */
+  }//end toString()
 
 
   // //return Stringified version of this Object,
   // // with extra debugging info
   // //(helper method for debugging/development phase)
-  // public String debug()
-  // {
-  //   String s = "";
-  //   s = "Size: " + this.data.length;
-  //   s = s + " LastItem: " + numberElements + "  Data: ";
-  //   for (int i = 0; i < numberElements; i++) {
-  //     s = s + data[i] + ", ";
-  //   }
-  //   s = s + "\n";
-  //   return s;
-  // }//end debug()
+  public String debug(){
+    String s = "";
+    s = "Size: " + this.data.length;
+    s = s + " LastItem: " + numberElements + "  Data: ";
+    for (int i = 0; i < numberElements; i++) {
+      s = s + data[i] + ", ";
+    }
+    s = s + "\n";
+    return s;
+  }//end debug()
 
 
-  // public void remove(int index)
-  // {
-  //   // shift items down to remove the item at index
-  //   /* YOUR SIMPLE+SMART CODE HERE */
+  public void remove(int index){
+    for (int i=index; i<this.data.length; i++) {
+      if (i <= this.data.length-2) {
+        this.data[i] = this.data[i+1];
+      }
+      else {
+        this.data[i] = 0;
+      }
+    }
 
-  //   // subtract fom numElements;
-  //   /* YOUR SIMPLE+SMART CODE HERE */
-  // }
+    numberElements -= 1;
+
+    // subtract fom numElements;
+    /* YOUR SIMPLE+SMART CODE HERE */
+  }
 
 
-  // public void add(int index, int value)
-  // {
-  //   // see if there's enough room
-  //   /* YOUR SIMPLE+SMART CODE HERE */
+  public void add(int index, int value)
+  {
+    // see if there's enough room
+    if (this.numberElements < this.data.length) {
+      for (int i=this.data.length-1; i>=index; i--) {
+        if (i != index) {
+          this.data[i] = this.data[i-1];
+        }
+        else {
+          this.data[i] = value;
+        }
+      }
+      numberElements += 1;
+    }
+      
 
   //   // shift elements toward the end of the array
   //   /* YOUR SIMPLE+SMART CODE HERE */
@@ -146,21 +185,28 @@ public class SuperArray
 
   //   // increment numElements
   //   /* YOUR SIMPLE+SMART CODE HERE */
-  // }
+  }
 
 
-  // private void grow()
-  // {
-  //   // create a new array with extra space
-  //   // Q: How did you decide how much to increase capacity by?
-  //   /* YOUR SIMPLE+SMART CODE HERE */
+  public void grow()
+  {
+    int[] tempArray = new int[this.data.length*2];
 
-  //   // copy over all the elements from the old array to the new one
-  //   /* YOUR SIMPLE+SMART CODE HERE */
+    for (int i=0; i<this.data.length; i++) {
+      tempArray[i] = this.data[i];
+    }
 
-  //   // point data to the new array
-  //   // Q: How does this look when illustrated using encapsulation diagram?
-  //   /* YOUR SIMPLE+SMART CODE HERE */
-  // }//end grow()
+    this.data = tempArray;
+    // create a new array with extra space
+    // Q: How did you decide how much to increase capacity by?
+    /* YOUR SIMPLE+SMART CODE HERE */
+
+    // copy over all the elements from the old array to the new one
+    /* YOUR SIMPLE+SMART CODE HERE */
+
+    // point data to the new array
+    // Q: How does this look when illustrated using encapsulation diagram?
+    /* YOUR SIMPLE+SMART CODE HERE */
+  }//end grow()
 
 }//end class
