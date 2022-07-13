@@ -56,9 +56,9 @@ System.out.println("Testing get -- (should be 0)");
     System.out.println(sa);
    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-    System.out.println("Testing grow()");
-    sa.grow();
-    System.out.println(sa);
+    // System.out.println("Testing grow()");
+    // sa.grow();
+    // System.out.println(sa);
 
 
   }//main

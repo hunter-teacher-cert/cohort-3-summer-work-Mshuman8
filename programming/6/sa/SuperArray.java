@@ -62,18 +62,22 @@ public class SuperArray
   public void add( int value )
   {
     // test to see if we need to grow, then grow
-    /**
-       IMPORTANT:
-       This is the first code that should run in this method
-       but the last code you should write.
-       Implement the rest of this method first,
-       then only write this section once the rest is tested and working.
-    */
+
+    if (numberElements == this.data.length) {
+      this.grow();
+    }
+    
+       // IMPORTANT:
+       // This is the first code that should run in this method
+       // but the last code you should write.
+       // Implement the rest of this method first,
+       // then only write this section once the rest is tested and working.
+    
     /* YOUR SIMPLE+SMART CODE HERE */
-    int[] tempArray = new int[data.length+1];
+    int[] tempArray = new int[this.data.length+1];
 
     if (this.data.length <= numberElements) {
-      for (int i=0; i<data.length; i++) {
+      for (int i=0; i<this.data.length; i++) {
         tempArray[i] = this.data[i];
       }
       this.data = tempArray;
@@ -188,7 +192,7 @@ public class SuperArray
   }
 
 
-  public void grow()
+  private void grow()
   {
     int[] tempArray = new int[this.data.length*2];
 
