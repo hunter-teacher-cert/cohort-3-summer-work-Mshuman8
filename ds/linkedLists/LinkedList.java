@@ -53,7 +53,7 @@ public class LinkedList{
     Node tempNode = this.head;
     String result = "";
 
-    for (int i=0; i<= index; i++) {
+    for (int i=0; i< index; i++) {
       tempNode = tempNode.getNext();
     }
 
@@ -82,7 +82,15 @@ public class LinkedList{
   returns the number of elements in the list
   */
   public int size(){
-    return 0;
+    Node tempNode = this.head;
+    int counter = 0;
+
+    while (tempNode != null) {
+      tempNode = tempNode.getNext();
+      counter += 1;
+    }
+    
+    return counter;
   }
 
 
@@ -103,7 +111,24 @@ public class LinkedList{
 
   */
   public void add(int index, String value){
+    Node tempNode = this.head;
+    Node insertNode = new Node(value);
 
+    if (index == 0) {
+      this.add(value);
+    }
+    else {
+      for (int i=0; i<index-1; i++) { //gets us to the index value where we want to insert the item
+      tempNode.getNext();
+      }
+
+      insertNode.setNext(tempNode.getNext());
+      tempNode.setNext(insertNode);
+      
+    }
+    
+    
+    
   }
 
 
@@ -118,7 +143,19 @@ public class LinkedList{
 
   */
   public int indexOf(String value){
-    return 0;
+    Node tempNode = this.head;
+    int counter = 0;
+
+    while (tempNode != null) {
+      
+      if (tempNode.getData() == value) {
+        return counter;
+      }
+      tempNode = tempNode.getNext();
+      counter ++;
+      
+    }
+    return -1;
   }
 
 
@@ -131,10 +168,27 @@ public class LinkedList{
 
   */
   public String[] toArray(){
-    return null;
+    Node tempNode = this.head;
+
+    int size = 0;
+
+    while (tempNode != null) {
+      tempNode = tempNode.getNext();
+      size ++;
+    }
+
+    String result[]; 
+    result = new String[size];
+    tempNode = this.head;
+    for (int i = 0; i< result.length && tempNode != null; i++){
+      result[i] = tempNode.getData();
+      tempNode = tempNode.getNext();
+    }
+    
+    return result;
   }
 
-
+  
 
   /**
   Remove the Node at location index from the list.
