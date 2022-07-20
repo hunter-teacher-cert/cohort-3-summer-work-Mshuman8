@@ -97,24 +97,27 @@ public class SortSearch{
        0 to the end of the ArrayList.
          For each index, find the smallest from that Location
 	 to the end of the array and swap it with that index.
-       
+      5,2,10,6,8 (compare 5 to everything)
+
+      2,5,10,6,8 (swap 2&5, compare 5 to everything else. Then compare 10 to everything)
+
+      2,5,6,10,8 (swap 6&10, compare 10 with everything after)
+
+      2,5,6,8,10 (swap 10&8)
 
     */
     public void sort(){
 
-      for (int i=0; i<this.data.size(); i++) {
-        int ogIValue = this.data.get(i);
-        int minValue = this.data.get(i);
-        int minIndex = i;
+      for (int i=0; i<this.data.size()-1; i++) {
 
-        for (int j=0; j<this.data.size(); j++) {
-          if (this.data.get(j) < minValue) {
-            minValue = this.data.get(j);
-            minIndex = j;
-          }
-        }
-        this.data.add(i,minValue);
-        this.data.add(minIndex,ogIValue);
+        int ogIValue = this.data.get(i); //get and store the original value at i index
+        int minIndex = findSmallestIndex(i); //find the index of the smallest value in the list
+        int minValue = this.data.get(minIndex); //get and store the minimum value at the smallest index (minIndex)
+
+        this.data.set(i,minValue); //assign the minimum value to the i index
+        this.data.set(minIndex,ogIValue); //assign the original i value to the place where the minimum index was.
+      
+        
       }
 
     }
@@ -134,9 +137,16 @@ public class SortSearch{
 
     */
     public int linearSearch(int value){
-	
-	
-	return 0; // replace this return
+
+      for (int i=0; i<this.data.size(); i++) {
+        if (this.data.get(i) == value) {
+          return i;
+        }
+        else {
+          return -1;
+        }
+      }
+	    // return 0; // replace this return
     }
     
     /**
@@ -145,6 +155,24 @@ public class SortSearch{
        This algorithm only works on sorted ArrayLists.
     */
     public int binarySearch(int value){
+
+      int lowInd = 0;
+      int highInd = this.data.size() - 1;
+      int midInd = highInd/lowInd;
+
+      if (value == midInd) { // value is midInd
+        return midInd;
+      }
+      
+      else if (value > midInd) { //value is higher than midInd
+        lowInd = midInd;
+        midInd = highInd/lowInd;
+        
+      }
+      else { //value is lower than midInd
+        
+      }
+      
 
 	// create assign variables  representing the high, low and middle indices 
 	// while we're not done:
