@@ -41,7 +41,7 @@ public class SortSearch{
 	    r = new Random();
       //fills the data ArrayList with 15 random numbers between 0 and 20.
 	    for (int i=0;i<15;i++){
-	      this.data.add(r.nextInt(20));
+	      this.data.add(r.nextInt(1000));
 	    }
 	
       }
@@ -51,7 +51,7 @@ public class SortSearch{
     	this.data = new ArrayList<Integer>();
     	r = new Random();
     	for (int i=0;i<size;i++){
-    	    this.data.add(r.nextInt(20));
+    	    this.data.add(r.nextInt(1000));
     	}
 	
     }
@@ -142,11 +142,9 @@ public class SortSearch{
         if (this.data.get(i) == value) {
           return i;
         }
-        else {
-          return -1;
-        }
+
       }
-	    // return 0; // replace this return
+	    return -1; // replace this return
     }
     
     /**
@@ -155,31 +153,36 @@ public class SortSearch{
        This algorithm only works on sorted ArrayLists.
     */
     public int binarySearch(int value){
+      // create assign variables  representing the high, low and middle indices 
+	    // while we're not done:
+	    //   if the item is at data.get(middle), return middle
+	    //   otherwise, update high, low, and middle
+
+      // we will be returning the middle value -- we are just making the range smaller and smaller
+      
 
       int lowInd = 0;
       int highInd = this.data.size() - 1;
-      int midInd = highInd/lowInd;
+      int midInd;
 
-      if (value == midInd) { // value is midInd
-        return midInd;
+      //while low < high -- keep searching, because when low is == to high then that means we only have one thing left.
+      while (lowInd <= highInd) {
+        midInd = (highInd + lowInd)/2;
+        if (value == this.data.get(midInd)) {
+          return midInd;
+        }
+        else if (value > this.data.get(midInd)) {
+          lowInd = midInd + 1;
+        }
+        else {
+          highInd = midInd - 1;
+        }
       }
-      
-      else if (value > midInd) { //value is higher than midInd
-        lowInd = midInd;
-        midInd = highInd/lowInd;
+      return -1;
         
-      }
-      else { //value is lower than midInd
-        
-      }
+
       
-
-	// create assign variables  representing the high, low and middle indices 
-	// while we're not done:
-	//   if the item is at data.get(middle), return middle
-	//   otherwise, update high, low, and middle
-
-	return 0;
+      
 	    
     }
     
