@@ -81,8 +81,8 @@ public class AlPractice{
     int ind1Val = dataList.get(index1);
     int ind2Val = dataList.get(index2);
 
-    dataList.add(index1,ind2Val);
-    dataList.add(index2,ind1Val);
+    dataList.set(index1,ind2Val);
+    dataList.set(index2,ind1Val);
 
   }
 
